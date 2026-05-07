@@ -335,6 +335,8 @@ def main():
             for skill_name in repo_manager.config.get("skills", {}).keys():
                 repo_url = updater.discover(skill_name, args.framework, args.lang)
                 results[skill_name] = repo_url
+                if not repo_url:
+                    print(f"Failed: {skill_name}")
             print(json.dumps(results, indent=2, ensure_ascii=False))
 
     elif args.command == "check":
