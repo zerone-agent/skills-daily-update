@@ -1,75 +1,112 @@
+---
+name: skills-daily-update
+description: "Automated skill update workflow for openagent framework. Fetch skills from Skill Market API, detect git repository updates via commit hash comparison, pack changed skills into zip archives, and upload to Aliyun OSS. Use this skill whenever the user mentions updating skills, checking skill updates, syncing skills, daily updates, packaging skills, uploading skills to OSS, or comparing if repos have new commits. Also trigger when users say things like '技能更新', '检查技能', '打包上传', or '同步到oss'."
+---
+
 # Skills Daily Update
 
-## Description
+## Overview
 
-Automated skill update workflow for openagent framework. Fetches skills from Skill Market API, detects git repository updates via commit hash comparison, packs changed skills into zip archives, and uploads to Aliyun OSS.
+Automated skill update workflow for openagent framework skills. This skill guides LLM through a deterministic pipeline:
 
-## Triggers
-
-- "update skills"
-- "daily update"
-- "sync skills"
-- "check skill updates"
-- "打包技能"
-- "上传技能到oss"
-- "检查技能更新"
+1. **Fetch** skills from Skill Market API
+2. **Check** for updates via git commit hash comparison
+3. **Pack** changed skills into individual zip archives
+4. **Upload** to Aliyun OSS
 
 ## Workflow
 
-1. **Fetch Skills**: Get current skill list from API
-   ```bash
-   python3 scripts/skills_update.py fetch --framework openagent --lang en
-   ```
+Execute these steps in order, reviewing outputs at each stage:
 
-2. **Update Config**: LLM reviews output and updates `config/repos.json` for new/unknown skills
-   - For skills in default repo: add with `"repo": null` and `"subdir": "skill-name"`
-   - For skills with independent repo: set `"repo": "https://..."` accordingly
+### Step 1: Fetch Skills
 
-3. **Check Updates**: Compare git commit hashes, generate `state/pack_plan.json`
-   ```bash
-   python3 scripts/skills_update.py check --repos config/repos.json --state state/last_commits.json
-   ```
+Get current skill list from the API:
 
-4. **Review Plan**: LLM inspects `state/pack_plan.json` to see which skills have updates
+```bash
+python3 scripts/skills_update.py fetch --framework openagent --lang en
+```
 
-5. **Pack Skills**: Create zip archives for changed skills
-   ```bash
-   python3 scripts/skills_update.py pack --plan state/pack_plan.json --output ./dist
-   ```
+**Output**: JSON array of skill names (e.g., `["skill-market", "superpowers"]`)
 
-6. **Upload to OSS**: Upload zips to configured Aliyun bucket
-   ```bash
-   python3 scripts/skills_update.py upload --plan state/pack_plan.json
-   ```
+### Step 2: Update Configuration
 
-7. **Update State**: After successful upload, update `state/last_commits.json` with new commit hashes from `pack_plan.json`
+Compare the fetched list with `config/repos.json`. For any new/unknown skills:
 
-## CLI Commands
+- **Default repo** (gitee.com/zerone-agent/agent-use-skills):
+  ```json
+  "skill-name": {"repo": null, "subdir": "skill-name"}
+  ```
 
-| Command | Description | Input | Output |
-|---------|-------------|-------|--------|
-| `fetch` | Get skills from API | `--framework`, `--lang` | JSON to stdout |
-| `check` | Detect updates | `--repos`, `--state` | `pack_plan.json` |
-| `pack` | Create zip archives | `--plan`, `--output` | Zip files + updated plan |
-| `upload` | Upload to OSS | `--plan` | Uploaded files + updated plan |
+- **Independent repo**:
+  ```json
+  "skill-name": {"repo": "https://github.com/example/repo.git", "subdir": null}
+  ```
 
-## Configuration
+- **Independent repo with subdir**:
+  ```json
+  "skill-name": {"repo": "https://github.com/example/repo.git", "subdir": "path/to/skill"}
+  ```
 
-### config/repos.json (LLM-maintained, initially empty)
+### Step 3: Check for Updates
+
+Detect which skills have new commits:
+
+```bash
+python3 scripts/skills_update.py check --repos config/repos.json --state state/last_commits.json
+```
+
+**Output**: `state/pack_plan.json` with updated skills
+
+### Step 4: Review Plan
+
+Inspect `state/pack_plan.json` to confirm which skills changed. Manually edit this file if you need to add or remove skills before packing.
+
+### Step 5: Pack Skills
+
+Create zip archives:
+
+```bash
+python3 scripts/skills_update.py pack --plan state/pack_plan.json --output ./dist
+```
+
+**Output**: Individual zip files in `./dist/` (e.g., `skill-market.zip`)
+
+### Step 6: Upload to OSS
+
+Upload to Aliyun OSS:
+
+```bash
+python3 scripts/skills_update.py upload --plan state/pack_plan.json
+```
+
+**Output**: `oss://{bucket}/skills/{date}/{skill-name}.zip`
+
+### Step 7: Update State
+
+After successful upload, update `state/last_commits.json` with the new commit hashes from `state/pack_plan.json`.
+
+## Configuration Reference
+
+### repos.json
 
 ```json
 {
   "_default_repo": "https://gitee.com/zerone-agent/agent-use-skills.git",
   "_default_path": "awesome-skills/skills",
-  "skills": {}
+  "skills": {
+    "skill-market": {"repo": null, "subdir": "skill-market"},
+    "custom-skill": {"repo": "https://github.com/example/custom.git", "subdir": null}
+  }
 }
 ```
 
-- `repo: null` -> use default repository + default_path + subdir
+- `repo: null` -> use `_default_repo` + `_default_path` + `subdir`
 - `repo: "url"` -> independent repository
 - `subdir`: relative path within repo to skill directory (null for repo root)
 
-### pack_plan.json (auto-generated by check)
+### pack_plan.json
+
+Auto-generated by `check`, updated by `pack` and `upload`:
 
 ```json
 {
@@ -77,18 +114,14 @@ Automated skill update workflow for openagent framework. Fetches skills from Ski
   "skills": [
     {
       "name": "skill-market",
-      "source_path": "/tmp/skills-update/.../skill-market",
+      "source_path": "/tmp/skills-update/...",
       "commit_hash": "abc1234",
-      "zip_path": null,
-      "oss_url": null
+      "zip_path": "/abs/path/to/skill-market.zip",
+      "oss_url": "oss://bucket/skills/2026-05-07/skill-market.zip"
     }
   ]
 }
 ```
-
-- `check` fills: name, source_path, commit_hash
-- `pack` fills: zip_path
-- `upload` fills: oss_url
 
 ### Environment Variables
 
@@ -99,26 +132,17 @@ export OSS_ENDPOINT=oss-cn-hangzhou.aliyuncs.com
 export OSS_BUCKET=your-bucket
 ```
 
-## OSS Upload Path
+## Key Design Decisions
 
-```
-oss://{bucket}/skills/{date}/{skill-name}.zip
-```
+- **Mixed repo support**: Some skills live in the default monorepo, others have independent repos. `repos.json` is the single source of truth.
+- **Commit hash tracking**: Update detection uses git commit hashes rather than timestamps or file hashes, because it's deterministic and handles force pushes correctly.
+- **JSON-based batching**: `pack_plan.json` serves as the contract between `check`, `pack`, and `upload`. This lets LLM inspect and modify the plan at any stage.
+- **Individual zips**: Each skill gets its own `{skill-name}.zip` rather than one big archive, making selective updates and downloads possible.
 
-Example: `oss://my-bucket/skills/2026-05-07/skill-market.zip`
+## Important Notes
 
-## Dependencies
-
-- `requests` - API calls
-- `oss2` - Aliyun OSS SDK
-- Standard library: `zipfile`, `json`, `argparse`, `subprocess`, `pathlib`, `tempfile`, `datetime`
-
-## Notes for LLM
-
-- When encountering new skills from API, add them to `config/repos.json`
-- For skills with independent repos, set `repo` field accordingly
-- Review `state/pack_plan.json` before packing to confirm which skills changed
-- After successful upload, update `state/last_commits.json` with new commit hashes
-- Each skill is packed individually: `{skill-name}.zip`
-- The tool supports mixed repo modes: some skills in default repo, some in independent repos
-- LLM can manually edit `pack_plan.json` to add/remove skills before pack/upload
+- Always review `pack_plan.json` before packing — it may contain skills you don't want to update
+- You can manually edit `pack_plan.json` to add/remove skills
+- After upload succeeds, update `last_commits.json` so the next run only detects *new* changes
+- The tool clones repos to a temporary directory during `check` — don't rely on these paths persisting
+- If a skill's repo is unreachable, the `check` command will print a warning and skip that skill
