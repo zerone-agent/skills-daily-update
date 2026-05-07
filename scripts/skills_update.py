@@ -103,8 +103,8 @@ class SkillsUpdater:
 
     API_BASE = "https://api.zerone.market/api"
 
-    def fetch(self, framework: str = "openagent", lang: str = "en") -> List[Dict]:
-        """Fetch skills list from API, filter by framework."""
+    def fetch(self, framework: str = "openagent", lang: str = "en") -> List[str]:
+        """Fetch skills list from API, filter by framework, return names only."""
         url = f"{self.API_BASE}/skills"
         params = {"framework": framework, "lang": lang}
 
@@ -114,11 +114,13 @@ class SkillsUpdater:
         data = response.json()
         skills = data.get("data", [])
 
-        filtered = [
-            skill for skill in skills if framework in skill.get("frameworks", [])
+        names = [
+            skill["name"]
+            for skill in skills
+            if framework in skill.get("frameworks", [])
         ]
 
-        return filtered
+        return names
 
     def check(self, repos_path: str, state_path: str, output_path: str = "state/pack_plan.json") -> str:
         """Check for skill updates and generate pack plan."""

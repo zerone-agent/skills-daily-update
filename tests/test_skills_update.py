@@ -96,9 +96,8 @@ class TestFetch(unittest.TestCase):
         skills = updater.fetch(framework="openagent", lang="en")
         self.assertIsInstance(skills, list)
         if skills:
-            self.assertIn("name", skills[0])
-            self.assertIn("frameworks", skills[0])
-            self.assertIn("openagent", skills[0].get("frameworks", []))
+            self.assertIsInstance(skills[0], str)
+            self.assertGreater(len(skills[0]), 0)
 
 
 class TestPack(unittest.TestCase):
