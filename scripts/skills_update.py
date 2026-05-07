@@ -278,7 +278,7 @@ class SkillsUpdater:
                 print(f"Warning: No zip file for {skill['name']}, skipping upload")
                 continue
 
-            oss_key = f"skills/{today}/{skill['name']}.zip"
+            oss_key = f"skills/{skill['name']}_{today}.zip"
 
             try:
                 bucket.put_object_from_file(oss_key, zip_path)
