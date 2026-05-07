@@ -161,7 +161,7 @@ class SkillsUpdater:
         return None
 
     def check(self, repos_path: str, state_path: str, output_path: str = "state/pack_plan.json") -> str:
-        """Check for skill updates and generate pack plan."""
+        """Check for skill updates using persistent local cache and generate pack plan."""
         repo_manager = RepoManager.load(repos_path)
         state = StateStore.load(state_path)
 
@@ -170,40 +170,38 @@ class SkillsUpdater:
             "skills": [],
         }
 
-        temp_base = tempfile.mkdtemp(prefix="skills-update-")
+        cache_dir = os.path.expanduser("~/.cache/skills-daily-update/repos")
+        os.makedirs(cache_dir, exist_ok=True)
 
-        try:
-            for skill_name in repo_manager.config.get("skills", {}).keys():
-                repo_url, subdir = repo_manager.get_repo_url(skill_name)
+        for skill_name in repo_manager.config.get("skills", {}).keys():
+            repo_url, subdir = repo_manager.get_repo_url(skill_name)
 
-                repo_dir_name = repo_url.rstrip("/").split("/")[-1].replace(".git", "")
-                dest = os.path.join(temp_base, repo_dir_name)
+            repo_dir_name = repo_url.rstrip("/").split("/")[-1].replace(".git", "")
+            dest = os.path.join(cache_dir, repo_dir_name)
 
-                try:
-                    commit_hash = repo_manager.clone_or_pull(repo_url, dest)
-                except subprocess.CalledProcessError as e:
-                    print(f"Warning: Failed to update {skill_name}: {e}")
-                    continue
+            try:
+                commit_hash = repo_manager.clone_or_pull(repo_url, dest)
+            except subprocess.CalledProcessError as e:
+                print(f"Warning: Failed to update {skill_name}: {e}")
+                continue
 
-                source_path = dest
-                if subdir:
-                    source_path = os.path.join(dest, subdir)
+            source_path = dest
+            if subdir:
+                source_path = os.path.join(dest, subdir)
 
-                if not os.path.exists(source_path):
-                    print(f"Warning: Source path not found for {skill_name}: {source_path}")
-                    continue
+            if not os.path.exists(source_path):
+                print(f"Warning: Source path not found for {skill_name}: {source_path}")
+                continue
 
-                last_commit = state.get_commit(skill_name)
-                if last_commit != commit_hash:
-                    plan["skills"].append({
-                        "name": skill_name,
-                        "source_path": source_path,
-                        "commit_hash": commit_hash,
-                        "zip_path": None,
-                        "oss_url": None,
-                    })
-        finally:
-            pass
+            last_commit = state.get_commit(skill_name)
+            if last_commit != commit_hash:
+                plan["skills"].append({
+                    "name": skill_name,
+                    "source_path": source_path,
+                    "commit_hash": commit_hash,
+                    "zip_path": None,
+                    "oss_url": None,
+                })
 
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
         with open(output_path, "w", encoding="utf-8") as f:

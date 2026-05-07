@@ -65,11 +65,17 @@ Compare the fetched list with `config/repos.json`. For any new/unknown skills:
 
 ### Step 3: Check for Updates
 
-Detect which skills have new commits:
+Detect which skills have new commits using local cache:
 
 ```bash
 python3 scripts/skills_update.py check --repos config/repos.json --state state/last_commits.json
 ```
+
+**How it works**:
+- First run: clones all repos to `~/.cache/skills-daily-update/repos/`
+- Subsequent runs: runs `git pull` on cached repos (much faster)
+- Compares current HEAD commit hash against `state/last_commits.json`
+- Outputs only changed skills to `state/pack_plan.json`
 
 **Output**: `state/pack_plan.json` with updated skills
 
