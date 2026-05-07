@@ -91,7 +91,7 @@ After successful upload, update `state/last_commits.json` with the new commit ha
 
 ```json
 {
-  "_default_repo": "https://gitee.com/zerone-agent/agent-use-skills.git",
+  "_default_repo": "https://github.com/Zerone-Agent/agent-use-skills.git",
   "_default_path": "awesome-skills/skills",
   "skills": {
     "skill-market": {"repo": null, "subdir": "skill-market"},
