@@ -122,6 +122,44 @@ class SkillsUpdater:
 
         return names
 
+    def discover(self, skill_name: str, framework: str = "openagent", lang: str = "en") -> Optional[str]:
+        """Discover real repo URL for a skill via install API.
+        
+        Calls /api/skills/:name/install and extracts git clone URL from markdown.
+        Returns repo URL or None if not found.
+        """
+        url = f"{self.API_BASE}/skills/{skill_name}/install"
+        params = {"framework": framework, "lang": lang}
+
+        try:
+            response = requests.get(url, params=params, timeout=30)
+            response.raise_for_status()
+        except requests.RequestException as e:
+            print(f"Warning: Failed to fetch install info for {skill_name}: {e}")
+            return None
+
+        content = response.text
+        
+        # Extract git clone URL from markdown code blocks
+        import re
+        
+        # Match git clone commands in markdown code blocks
+        patterns = [
+            r'git clone\s+(https?://[^\s]+\.git)',
+            r'git clone\s+(https?://[^\s]+)',
+        ]
+        
+        for pattern in patterns:
+            match = re.search(pattern, content)
+            if match:
+                repo_url = match.group(1)
+                # Add .git if missing
+                if not repo_url.endswith('.git'):
+                    repo_url += '.git'
+                return repo_url
+        
+        return None
+
     def check(self, repos_path: str, state_path: str, output_path: str = "state/pack_plan.json") -> str:
         """Check for skill updates and generate pack plan."""
         repo_manager = RepoManager.load(repos_path)
@@ -270,6 +308,12 @@ def main():
     upload_parser = subparsers.add_parser("upload", help="Upload to OSS")
     upload_parser.add_argument("--plan", default="state/pack_plan.json", help="Pack plan path")
 
+    discover_parser = subparsers.add_parser("discover", help="Discover skill repo URLs from install API")
+    discover_parser.add_argument("--skill", help="Single skill name to discover (if not set, discovers all in repos.json)")
+    discover_parser.add_argument("--repos", default="config/repos.json", help="Repos config path")
+    discover_parser.add_argument("--framework", default="openagent", help="Framework")
+    discover_parser.add_argument("--lang", default="en", help="Language")
+
     args = parser.parse_args()
 
     updater = SkillsUpdater()
@@ -277,6 +321,25 @@ def main():
     if args.command == "fetch":
         skills = updater.fetch(args.framework, args.lang)
         print(json.dumps(skills, indent=2, ensure_ascii=False))
+
+    elif args.command == "discover":
+        if args.skill:
+            # Single skill mode
+            repo_url = updater.discover(args.skill, args.framework, args.lang)
+            result = {args.skill: repo_url} if repo_url else {args.skill: None}
+            print(json.dumps(result, indent=2, ensure_ascii=False))
+        else:
+            # Batch mode: discover all skills in repos.json
+            repo_manager = RepoManager.load(args.repos)
+            results = {}
+            for skill_name in repo_manager.config.get("skills", {}).keys():
+                repo_url = updater.discover(skill_name, args.framework, args.lang)
+                results[skill_name] = repo_url
+                if repo_url:
+                    print(f"Discovered: {skill_name} -> {repo_url}")
+                else:
+                    print(f"Failed: {skill_name}")
+            print(json.dumps(results, indent=2, ensure_ascii=False))
 
     elif args.command == "check":
         plan_path = updater.check(args.repos, args.state, args.output)

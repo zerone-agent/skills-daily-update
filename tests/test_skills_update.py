@@ -138,6 +138,20 @@ class TestPack(unittest.TestCase):
                 self.assertIn("SKILL.md", files)
 
 
+class TestDiscover(unittest.TestCase):
+    def test_discover_skill_market(self):
+        updater = SkillsUpdater()
+        repo_url = updater.discover("skill-market", framework="openagent", lang="en")
+        self.assertIsNotNone(repo_url)
+        self.assertTrue(repo_url.startswith("https://"))
+        self.assertTrue(repo_url.endswith(".git"))
+
+    def test_discover_nonexistent_skill(self):
+        updater = SkillsUpdater()
+        repo_url = updater.discover("nonexistent-skill-12345", framework="openagent", lang="en")
+        self.assertIsNone(repo_url)
+
+
 class TestUpload(unittest.TestCase):
     def test_upload_structure(self):
         with tempfile.TemporaryDirectory() as tmpdir:

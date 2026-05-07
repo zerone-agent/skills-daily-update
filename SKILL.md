@@ -28,11 +28,27 @@ python3 scripts/skills_update.py fetch --framework openagent --lang en
 
 **Output**: JSON array of skill names (e.g., `["skill-market", "superpowers"]`)
 
-### Step 2: Update Configuration
+### Step 2: Discover Repos (Optional but Recommended)
+
+Auto-detect real repo URLs via the install API:
+
+```bash
+# Single skill
+python3 scripts/skills_update.py discover --skill skill-market
+
+# All skills in repos.json
+python3 scripts/skills_update.py discover --repos config/repos.json
+```
+
+**Output**: `{ "skill-market": "https://github.com/Zerone-Agent/agent-use-skills.git" }`
+
+Use this to automatically populate `repos.json`. The command calls the install API and extracts the `git clone` URL from the returned markdown tutorial.
+
+### Step 3: Update Configuration
 
 Compare the fetched list with `config/repos.json`. For any new/unknown skills:
 
-- **Default repo** (gitee.com/zerone-agent/agent-use-skills):
+- **Default repo** (github.com/Zerone-Agent/agent-use-skills):
   ```json
   "skill-name": {"repo": null, "subdir": "skill-name"}
   ```
