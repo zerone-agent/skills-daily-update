@@ -17,6 +17,13 @@ from pathlib import Path
 from typing import List, Dict, Optional
 
 import requests
+from dotenv import load_dotenv
+
+# Auto-load .env file from project root
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+env_path = os.path.join(project_root, ".env")
+if os.path.exists(env_path):
+    load_dotenv(env_path)
 
 
 class RepoManager:
