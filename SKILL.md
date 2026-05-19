@@ -34,23 +34,7 @@ python3 scripts/skills_update.py fetch --framework openagent --lang en
 
 **Output**: JSON array of skill names (e.g., `["skill-market", "superpowers"]`)
 
-### Step 2: Discover Repos (Optional but Recommended)
-
-Auto-detect real repo URLs via the install API:
-
-```bash
-# Single skill
-python3 scripts/skills_update.py discover --skill skill-market
-
-# All skills in repos.json
-python3 scripts/skills_update.py discover --repos config/repos.json
-```
-
-**Output**: `{ "skill-market": "https://github.com/Zerone-Agent/agent-use-skills.git" }`
-
-Use this to automatically populate `repos.json`. The command calls the install API and extracts the `git clone` URL from the returned markdown tutorial.
-
-### Step 3: Update Configuration
+### Step 2: Update Configuration
 
 Compare the fetched list with `config/repos.json`. For any new/unknown skills:
 
@@ -69,7 +53,7 @@ Compare the fetched list with `config/repos.json`. For any new/unknown skills:
   "skill-name": {"repo": "https://github.com/example/repo.git", "subdir": "path/to/skill"}
   ```
 
-### Step 4: Check for Updates
+### Step 3: Check for Updates
 
 Detect which skills have new commits using local cache:
 
@@ -85,11 +69,11 @@ python3 scripts/skills_update.py check --repos config/repos.json --state state/l
 
 **Output**: `state/pack_plan.json` with updated skills
 
-### Step 5: Review Plan
+### Step 4: Review Plan
 
 Inspect `state/pack_plan.json` to confirm which skills changed. Manually edit this file if you need to add or remove skills before packing.
 
-### Step 6: Pack Skills
+### Step 5: Pack Skills
 
 Create zip archives:
 
@@ -99,7 +83,7 @@ python3 scripts/skills_update.py pack --plan state/pack_plan.json --output ./dis
 
 **Output**: Individual zip files in `./dist/` (e.g., `skill-market.zip`)
 
-### Step 7: Publish to Agent Hub
+### Step 6: Publish to Agent Hub
 
 Publish skills to Agent Hub via yioneai adapter:
 
@@ -109,14 +93,14 @@ python3 scripts/skills_update.py publish --plan state/pack_plan.json
 
 **Options**:
 - `--title-prefix`: Add prefix to skill titles (e.g., "v2.0-")
-- `--description`: Set default description for all skills
+- `--description`: Set default description for all skills (individual skill descriptions in repos.json take precedence)
 - `--type`: Skill type, either `expert` or `community` (default: `community`)
 
 **Output**: Skills published to https://oauth.yioneai.cn/static/skills
 
 > **Note**: Daily updated skills are published as `community` type by default.
 
-### Step 8: Update State
+### Step 7: Update State
 
 After successful publish, update `state/last_commits.json` with the new commit hashes from `state/pack_plan.json`.
 
@@ -129,8 +113,16 @@ After successful publish, update `state/last_commits.json` with the new commit h
   "_default_repo": "https://github.com/Zerone-Agent/agent-use-skills.git",
   "_default_path": "awesome-skills/skills",
   "skills": {
-    "skill-market": {"repo": null, "subdir": "skill-market"},
-    "custom-skill": {"repo": "https://github.com/example/custom.git", "subdir": null}
+    "skill-market": {
+      "repo": null,
+      "subdir": "skill-market",
+      "description": "自动化的技能发现与安装技能"
+    },
+    "custom-skill": {
+      "repo": "https://github.com/example/custom.git",
+      "subdir": null,
+      "description": "自定义技能描述"
+    }
   }
 }
 ```
@@ -138,6 +130,7 @@ After successful publish, update `state/last_commits.json` with the new commit h
 - `repo: null` -> use `_default_repo` + `_default_path` + `subdir`
 - `repo: "url"` -> independent repository
 - `subdir`: relative path within repo to skill directory (null for repo root)
+- `description`: Chinese description used when publishing to Agent Hub
 
 ### pack_plan.json
 

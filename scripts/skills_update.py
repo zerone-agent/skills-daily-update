@@ -122,6 +122,7 @@ class SkillsUpdater:
         "minimax-skills",
         "opencli",
         "obsidian",
+        "qiushi-skill",
     }
     
     # 网络配置
@@ -261,7 +262,9 @@ class SkillsUpdater:
                 for root, dirs, files in os.walk(source_path):
                     for file in files:
                         file_path = os.path.join(root, file)
-                        arcname = os.path.relpath(file_path, source_path)
+                        # Add skill name as top-level directory
+                        rel_path = os.path.relpath(file_path, source_path)
+                        arcname = os.path.join(skill_name, rel_path)
                         zf.write(file_path, arcname)
 
             skill["zip_path"] = os.path.abspath(zip_path)
@@ -322,6 +325,15 @@ class SkillsUpdater:
             plan = json.load(f)
 
         published = []
+        
+        # Load repos config for descriptions
+        repos_path = Path(plan_path).parent.parent / "config" / "repos.json"
+        try:
+            with open(repos_path, "r", encoding="utf-8") as f:
+                repos_config = json.load(f)
+        except Exception as e:
+            print(f"Warning: Could not load repos.json: {e}")
+            repos_config = {"skills": {}}
 
         for skill in plan["skills"]:
             zip_path = skill.get("zip_path")
@@ -338,7 +350,11 @@ class SkillsUpdater:
                 continue
             
             title = f"{title_prefix}{skill_name}" if title_prefix else skill_name
-            desc = description or f"Auto-published from skills-daily-update"
+            
+            # Get skill-specific description from repos.json
+            skill_config = repos_config.get("skills", {}).get(skill_name, {})
+            skill_description = skill_config.get("description", "")
+            desc = skill_description or description or f"Auto-published from skills-daily-update"
 
             # 检查是否存在同名技能，如果存在则删除
             try:
