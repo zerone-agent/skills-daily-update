@@ -3,7 +3,7 @@
 Skills Daily Update Tool
 
 Fetches openagent skills from API, detects git repo updates,
-packs changed skills into zips, and uploads to Aliyun OSS.
+packs changed skills into zips, and publishes to Agent Hub.
 """
 
 import argparse
@@ -11,6 +11,7 @@ import json
 import os
 import subprocess
 import tempfile
+import time
 import zipfile
 from datetime import datetime
 from pathlib import Path
@@ -109,6 +110,24 @@ class SkillsUpdater:
     """Main updater class with CLI subcommands."""
 
     API_BASE = "https://api.zerone.market/api"
+    
+    # 黑名单：发布时忽略这些技能
+    PUBLISH_BLACKLIST = {
+        "reports-summary",
+        "weekly-report",
+        "huashu-design",
+        "ppt-master",
+        "baoyu-skills",
+        "ljg-skills",
+        "minimax-skills",
+        "opencli",
+        "obsidian",
+    }
+    
+    # 网络配置
+    PUBLISH_TIMEOUT = 10  # 10秒超时
+    PUBLISH_MAX_RETRIES = 3  # 最大重试次数
+    PUBLISH_RETRY_DELAY = 1  # 重试间隔（秒）
 
     def fetch(self, framework: str = "openagent", lang: str = "en") -> List[str]:
         """Fetch skills list from API, filter by framework, return names only."""
@@ -181,6 +200,11 @@ class SkillsUpdater:
         os.makedirs(cache_dir, exist_ok=True)
 
         for skill_name in repo_manager.config.get("skills", {}).keys():
+            # 检查黑名单，跳过不需要更新的技能
+            if skill_name in self.PUBLISH_BLACKLIST:
+                print(f"Skipping blacklisted skill in check: {skill_name}")
+                continue
+            
             repo_url, subdir = repo_manager.get_repo_url(skill_name)
 
             repo_dir_name = repo_url.rstrip("/").split("/")[-1].replace(".git", "")
@@ -247,7 +271,7 @@ class SkillsUpdater:
             json.dump(plan, f, indent=2)
 
     def upload(self, plan_path: str) -> None:
-        """Upload packed zips to OSS."""
+        """Upload packed zips to OSS (legacy, use publish instead)."""
         access_key = os.environ.get("OSS_ACCESS_KEY_ID")
         access_secret = os.environ.get("OSS_ACCESS_KEY_SECRET")
         endpoint = os.environ.get("OSS_ENDPOINT")
@@ -292,6 +316,162 @@ class SkillsUpdater:
         with open(plan_path, "w", encoding="utf-8") as f:
             json.dump(plan, f, indent=2)
 
+    def publish(self, plan_path: str, title_prefix: str = "", description: str = "", skill_type: str = "community") -> None:
+        """Publish packed skills to Agent Hub via yioneai adapter."""
+        with open(plan_path, "r", encoding="utf-8") as f:
+            plan = json.load(f)
+
+        published = []
+
+        for skill in plan["skills"]:
+            zip_path = skill.get("zip_path")
+            if not zip_path or not os.path.exists(zip_path):
+                print(f"Warning: No zip file for {skill['name']}, skipping publish")
+                continue
+
+            skill_name = skill["name"]
+            
+            # 检查黑名单
+            if skill_name in self.PUBLISH_BLACKLIST:
+                print(f"Skipping blacklisted skill: {skill_name}")
+                skill["published"] = False
+                continue
+            
+            title = f"{title_prefix}{skill_name}" if title_prefix else skill_name
+            desc = description or f"Auto-published from skills-daily-update"
+
+            # 检查是否存在同名技能，如果存在则删除
+            try:
+                # 获取所有技能列表
+                list_result = subprocess.run(
+                    ["opencli", "yioneai", "list", "-f", "json"],
+                    check=True,
+                    capture_output=True,
+                    text=True,
+                    timeout=30,
+                )
+                existing_skills = json.loads(list_result.stdout)
+                
+                # 查找同名技能
+                existing_skill = None
+                for s in existing_skills:
+                    if s.get("name") == skill_name:
+                        existing_skill = s
+                        break
+                
+                if existing_skill:
+                    print(f"Found existing skill '{skill_name}' with ID {existing_skill.get('id')}, deleting...")
+                    delete_result = subprocess.run(
+                        ["opencli", "yioneai", "delete", skill_name],
+                        check=True,
+                        capture_output=True,
+                        text=True,
+                        timeout=30,
+                    )
+                    print(f"Deleted existing skill: {skill_name}")
+                    time.sleep(2)  # 等待删除完成
+                    
+            except (subprocess.CalledProcessError, subprocess.TimeoutExpired, json.JSONDecodeError) as e:
+                print(f"Warning: Failed to check/delete existing skill {skill_name}: {e}")
+                # 继续尝试发布，即使检查失败
+
+            # 重试机制
+            for attempt in range(self.PUBLISH_MAX_RETRIES):
+                try:
+                    # Call opencli yioneai create with timeout and trace
+                    cmd = [
+                        "opencli", "yioneai", "create", skill_name,
+                        "--title", title,
+                        "--file", zip_path,
+                        "--description", desc,
+                        "--type", skill_type,
+                        "-f", "json",
+                        "--trace", "retain-on-failure"
+                    ]
+                    result = subprocess.run(
+                        cmd,
+                        check=True,
+                        capture_output=True,
+                        text=True,
+                        timeout=self.PUBLISH_TIMEOUT,
+                    )
+
+                    output = json.loads(result.stdout)
+                    if output and len(output) > 0:
+                        skill["published"] = True
+                        skill["hub_id"] = output[0].get("id")
+                        skill["hub_url"] = output[0].get("url")
+                        published.append(skill_name)
+                        print(f"Published: {skill_name} -> ID {output[0].get('id')}")
+                        break  # 成功，跳出重试循环
+                    else:
+                        print(f"Warning: Empty response for {skill_name}")
+                        skill["published"] = False
+                        break
+
+                except subprocess.CalledProcessError as e:
+                    print(f"Attempt {attempt + 1}/{self.PUBLISH_MAX_RETRIES} failed for {skill_name}")
+                    print(f"  Return code: {e.returncode}")
+                    if e.stdout:
+                        print(f"  Stdout: {e.stdout[:500]}")
+                    if e.stderr:
+                        print(f"  Stderr: {e.stderr[:500]}")
+                    
+                    # 分析具体错误类型
+                    error_output = e.stderr or e.stdout or str(e)
+                    if "EPIPE" in error_output:
+                        print(f"  Error type: Broken pipe (EPIPE) - 可能是网络连接中断或服务器关闭连接")
+                    elif "ECONNRESET" in error_output:
+                        print(f"  Error type: Connection reset (ECONNRESET) - 服务器重置了连接")
+                    elif "ETIMEDOUT" in error_output:
+                        print(f"  Error type: Connection timed out (ETIMEDOUT) - 连接超时")
+                    elif "ENOTFOUND" in error_output:
+                        print(f"  Error type: DNS resolution failed (ENOTFOUND) - 域名解析失败")
+                    elif "已存在" in error_output:
+                        print(f"  Error type: Skill already exists")
+                    else:
+                        print(f"  Error type: Unknown network error")
+                    
+                    if attempt < self.PUBLISH_MAX_RETRIES - 1:
+                        print(f"  Retrying in {self.PUBLISH_RETRY_DELAY} seconds...")
+                        time.sleep(self.PUBLISH_RETRY_DELAY)
+                    else:
+                        print(f"Failed to publish {skill_name} after {self.PUBLISH_MAX_RETRIES} attempts")
+                        skill["published"] = False
+
+                except subprocess.TimeoutExpired:
+                    print(f"Attempt {attempt + 1}/{self.PUBLISH_MAX_RETRIES} timeout for {skill_name}")
+                    print(f"  Timeout after {self.PUBLISH_TIMEOUT} seconds")
+                    if attempt < self.PUBLISH_MAX_RETRIES - 1:
+                        print(f"  Retrying in {self.PUBLISH_RETRY_DELAY} seconds...")
+                        time.sleep(self.PUBLISH_RETRY_DELAY)
+                    else:
+                        print(f"Failed to publish {skill_name} after {self.PUBLISH_MAX_RETRIES} attempts (timeout)")
+                        skill["published"] = False
+
+                except json.JSONDecodeError as e:
+                    print(f"Attempt {attempt + 1}/{self.PUBLISH_MAX_RETRIES} JSON error for {skill_name}: {e}")
+                    if attempt < self.PUBLISH_MAX_RETRIES - 1:
+                        print(f"  Retrying in {self.PUBLISH_RETRY_DELAY} seconds...")
+                        time.sleep(self.PUBLISH_RETRY_DELAY)
+                    else:
+                        print(f"Failed to publish {skill_name} after {self.PUBLISH_MAX_RETRIES} attempts (JSON error)")
+                        skill["published"] = False
+
+                except Exception as e:
+                    print(f"Attempt {attempt + 1}/{self.PUBLISH_MAX_RETRIES} unexpected error for {skill_name}: {e}")
+                    if attempt < self.PUBLISH_MAX_RETRIES - 1:
+                        print(f"  Retrying in {self.PUBLISH_RETRY_DELAY} seconds...")
+                        time.sleep(self.PUBLISH_RETRY_DELAY)
+                    else:
+                        print(f"Failed to publish {skill_name} after {self.PUBLISH_MAX_RETRIES} attempts (unexpected error)")
+                        skill["published"] = False
+
+        with open(plan_path, "w", encoding="utf-8") as f:
+            json.dump(plan, f, indent=2)
+
+        print(f"\nPublished {len(published)} skills: {', '.join(published)}")
+
 
 def main():
     parser = argparse.ArgumentParser(description="Skills Daily Update Tool")
@@ -310,8 +490,14 @@ def main():
     pack_parser.add_argument("--plan", default="state/pack_plan.json", help="Pack plan path")
     pack_parser.add_argument("--output", default="./dist", help="Output directory")
 
-    upload_parser = subparsers.add_parser("upload", help="Upload to OSS")
+    upload_parser = subparsers.add_parser("upload", help="Upload to OSS (legacy)")
     upload_parser.add_argument("--plan", default="state/pack_plan.json", help="Pack plan path")
+
+    publish_parser = subparsers.add_parser("publish", help="Publish to Agent Hub via yioneai adapter")
+    publish_parser.add_argument("--plan", default="state/pack_plan.json", help="Pack plan path")
+    publish_parser.add_argument("--title-prefix", default="", help="Prefix for skill titles")
+    publish_parser.add_argument("--description", default="", help="Default description for skills")
+    publish_parser.add_argument("--type", default="community", choices=["expert", "community"], help="Skill type (default: community)")
 
     discover_parser = subparsers.add_parser("discover", help="Discover skill repo URLs from install API")
     discover_parser.add_argument("--skill", help="Single skill name to discover (if not set, discovers all in repos.json)")
@@ -355,6 +541,10 @@ def main():
     elif args.command == "upload":
         updater.upload(args.plan)
         print("Upload complete")
+
+    elif args.command == "publish":
+        updater.publish(args.plan, args.title_prefix, args.description, args.type)
+        print("Publish complete")
 
     else:
         parser.print_help()

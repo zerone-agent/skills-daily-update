@@ -1,5 +1,90 @@
 {
   "_default_repo": "https://github.com/Zerone-Agent/agent-use-skills.git",
   "_default_path": "awesome-skills/skills",
-  "skills": {}
+  "skills": {
+    "content-research-writer": {
+      "repo": null,
+      "subdir": "content-research-writer"
+    },
+    "deep-research": {
+      "repo": null,
+      "subdir": "deep-research"
+    },
+    "humanizer-zh": {
+      "repo": null,
+      "subdir": "humanizer-zh"
+    },
+    "reports-summary": {
+      "repo": null,
+      "subdir": "reports-summary"
+    },
+    "skill-market": {
+      "repo": null,
+      "subdir": "skill-market"
+    },
+    "video-summarizer": {
+      "repo": null,
+      "subdir": "video-summarizer"
+    },
+    "weekly-report": {
+      "repo": null,
+      "subdir": "weekly-report"
+    },
+    "agent-browser": {
+      "repo": "https://github.com/vercel-labs/agent-browser.git",
+      "subdir": "skills/agent-browser"
+    },
+    "anti-distill": {
+      "repo": "https://github.com/leilei926524-tech/anti-distill.git",
+      "subdir": null
+    },
+    "baoyu-skills": {
+      "repo": "https://github.com/JimLiu/baoyu-skills.git",
+      "subdir": null
+    },
+    "colleague-skill": {
+      "repo": "https://github.com/titanwings/colleague-skill.git",
+      "subdir": "skills/colleague"
+    },
+    "huashu-design": {
+      "repo": "https://github.com/alchaincyf/huashu-design.git",
+      "subdir": null
+    },
+    "ljg-skills": {
+      "repo": "https://github.com/lijigang/ljg-skills.git",
+      "subdir": null
+    },
+    "minimax-skills": {
+      "repo": "https://github.com/MiniMax-AI/skills.git",
+      "subdir": null
+    },
+    "obsidian": {
+      "repo": "https://github.com/kepano/obsidian-skills.git",
+      "subdir": null
+    },
+    "opencli": {
+      "repo": "https://github.com/jackwener/OpenCLI.git",
+      "subdir": null
+    },
+    "ppt-master": {
+      "repo": "https://github.com/hugohe3/ppt-master.git",
+      "subdir": null
+    },
+    "qiushi-skill": {
+      "repo": "https://github.com/HughYau/qiushi-skill.git",
+      "subdir": null
+    },
+    "self-improving-agent": {
+      "repo": "https://github.com/peterskoett/self-improving-agent.git",
+      "subdir": null
+    },
+    "skill-creator": {
+      "repo": null,
+      "subdir": "skill-creator"
+    },
+    "wewrite": {
+      "repo": "https://github.com/oaker-io/wewrite.git",
+      "subdir": null
+    }
+  }
 }

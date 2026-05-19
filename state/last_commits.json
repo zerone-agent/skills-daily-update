@@ -1,1 +1,22 @@
-{}
+{
+  "content-research-writer": "f63d5ad4160b200c1ee39bca71c41e4b31c44152",
+  "deep-research": "f63d5ad4160b200c1ee39bca71c41e4b31c44152",
+  "humanizer-zh": "f63d5ad4160b200c1ee39bca71c41e4b31c44152",
+  "reports-summary": "f63d5ad4160b200c1ee39bca71c41e4b31c44152",
+  "skill-market": "f63d5ad4160b200c1ee39bca71c41e4b31c44152",
+  "video-summarizer": "f63d5ad4160b200c1ee39bca71c41e4b31c44152",
+  "weekly-report": "f63d5ad4160b200c1ee39bca71c41e4b31c44152",
+  "agent-browser": "3bb1d43f8bb16444596365496f78395da8f1e6b7",
+  "anti-distill": "db8c31afae078d07ca79b25ed32a36c67c4ed93a",
+  "baoyu-skills": "4af0506fa32409efa70733ed91a32d4d81585244",
+  "colleague-skill": "52464097b753d5c24d674613b8dd2b920a8287e5",
+  "huashu-design": "764031ae4fa3379cc27b81c431093a3d5872c846",
+  "ljg-skills": "d2d6a0313baaeee789d00aa5c3841d4622147f23",
+  "minimax-skills": "60aaae52bb2af8162732751a4332f62a5fef518b",
+  "obsidian": "fa1e131a014576ff8f8919f191a7ca8d8fded39b",
+  "opencli": "d527571b7d534968ad06388224b02b82cd8ddbff",
+  "qiushi-skill": "6cac8a569d3e5c48311d5bfe41c9d3dced27d14b",
+  "self-improving-agent": "109f3ff4c0ad725fff94b8ab4d882aab9728b828",
+  "skill-creator": "60aaae52bb2af8162732751a4332f62a5fef518b",
+  "wewrite": "8077635f259de20a49bf903143be267767d9a2ca"
+}
