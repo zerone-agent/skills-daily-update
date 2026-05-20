@@ -72,9 +72,9 @@
       "subdir": null,
       "description": "MiniMax Skills 是一套面向 AI 编程工具的综合技能库，提供结构化的、生产级质量的前端、全栈、移动端（Android、iOS、Flutter、React Native）、着色器开发以及文档处理（PDF、PPTX、XLSX、DO..."
     },
-    "obsidian": {
-      "repo": "https://github.com/kepano/obsidian-skills.git",
-      "subdir": null,
+    "obsidian-cli": {
+      "repo": null,
+      "subdir": "obsidian-cli",
       "description": "Obsidian Skills 是一套专为 Obsidian 知识管理工具设计的 Agent Skills，遵循 [Agent Skills 规范](https://agentskills.io/specification)，可与 Clau..."
     },
     "opencli": {

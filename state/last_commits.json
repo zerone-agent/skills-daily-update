@@ -1,16 +1,17 @@
 {
-  "content-research-writer": "42f3e56a81aa63567f8252229c20af6c3174cd6e",
-  "deep-research": "42f3e56a81aa63567f8252229c20af6c3174cd6e",
-  "humanizer-zh": "42f3e56a81aa63567f8252229c20af6c3174cd6e",
+  "content-research-writer": "2601e51cefb26db71cd3fbaa02bcdaba92b30234",
+  "deep-research": "2601e51cefb26db71cd3fbaa02bcdaba92b30234",
+  "humanizer-zh": "2601e51cefb26db71cd3fbaa02bcdaba92b30234",
   "reports-summary": "42f3e56a81aa63567f8252229c20af6c3174cd6e",
-  "skill-market": "42f3e56a81aa63567f8252229c20af6c3174cd6e",
-  "video-summarizer": "42f3e56a81aa63567f8252229c20af6c3174cd6e",
+  "skill-market": "2601e51cefb26db71cd3fbaa02bcdaba92b30234",
+  "video-summarizer": "2601e51cefb26db71cd3fbaa02bcdaba92b30234",
   "weekly-report": "42f3e56a81aa63567f8252229c20af6c3174cd6e",
   "agent-browser": "55f38f4d81981f0191c730005c419958c7d20605",
   "anti-distill": "1d3bab0dd8fd23146534fb29594baf349b563e85",
   "colleague-skill": "bc3db7c521b2ba3d84c19cddaff7a86742f47195",
   "qiushi-skill": "6cac8a569d3e5c48311d5bfe41c9d3dced27d14b",
   "self-improving-agent": "109f3ff4c0ad725fff94b8ab4d882aab9728b828",
-  "skill-creator": "42f3e56a81aa63567f8252229c20af6c3174cd6e",
-  "wewrite": "8077635f259de20a49bf903143be267767d9a2ca"
+  "skill-creator": "2601e51cefb26db71cd3fbaa02bcdaba92b30234",
+  "wewrite": "8077635f259de20a49bf903143be267767d9a2ca",
+  "obsidian-cli": "ac9398734fe719565809f7a6048b05c36b1ca38f"
 }
