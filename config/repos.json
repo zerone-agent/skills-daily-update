@@ -17,7 +17,7 @@
     "humanizer-zh": {
       "repo": null,
       "subdir": "humanizer-zh",
-      "description": "Humanizer-zh 是一个专门针对中文语境优化的文案编辑技能，旨在识别并消除文本中明显的 AI 生成痕迹。它基于维基百科的"AI 写作迹象"综合指南，并针对中文写作习惯进行了深度适配，让 AI 生成的文字听起来更自然、更具人性的温度。",
+      "description": "Humanizer-zh 是一个专门针对中文语境优化的文案编辑技能，旨在识别并消除文本中明显的 AI 生成痕迹。它基于维基百科的'AI 写作迹象'综合指南，并针对中文写作习惯进行了深度适配，让 AI 生成的文字听起来更自然、更具人性的温度。",
       "description_en": "Humanizer-zh is a copywriting skill optimized for Chinese context, designed to identify and remove obvious AI-generated traces in text. Based on Wikipedia's comprehensive guide on AI writing signals, it is deeply adapted to Chinese writing habits to make AI-generated text sound more natural and human."
     },
     "reports-summary": {
