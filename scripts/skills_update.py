@@ -121,7 +121,6 @@ class SkillsUpdater:
         "ljg-skills",
         "minimax-skills",
         "opencli",
-        "obsidian",
         "qiushi-skill",
     }
     
