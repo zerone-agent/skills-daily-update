@@ -64,7 +64,7 @@
     },
     "colleague-skill": {
       "repo": "https://github.com/titanwings/colleague-skill.git",
-      "subdir": "skills/colleague",
+      "subdir": null,
       "description": "Colleague Skill 是一个将同事\"蒸馏\"为 AI Skill 的工具，通过自动采集飞书/钉钉数据，生成包含工作能力和性格特征的数字化同事。",
       "description_en": "Colleague Skill is a tool that \"distills\" colleagues into AI Skills by automatically collecting Feishu/DingTalk data to generate digital colleague profiles with work capabilities and personality traits."
     },

@@ -122,6 +122,7 @@ class SkillsUpdater:
         "minimax-skills",
         "opencli",
         "qiushi-skill",
+        "colleague-skill",
     }
     
     # 网络配置
