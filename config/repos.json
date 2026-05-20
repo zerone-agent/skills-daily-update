@@ -5,102 +5,122 @@
     "content-research-writer": {
       "repo": null,
       "subdir": "content-research-writer",
-      "description": "Content Research Writer 是一个内容写作协作技能，充当你的写作伙伴，帮助你进行调研、大纲构建、草稿撰写和内容优化，同时保持你独特的写作风格和声音。"
+      "description": "Content Research Writer 是一个内容写作协作技能，充当你的写作伙伴，帮助你进行调研、大纲构建、草稿撰写和内容优化，同时保持你独特的写作风格和声音。",
+      "description_en": "Content Research Writer is a collaborative writing skill that acts as your writing partner, helping you with research, outlining, drafting, and content optimization while preserving your unique writing style and voice."
     },
     "deep-research": {
       "repo": null,
       "subdir": "deep-research",
-      "description": "Deep Research 是一个自主多步骤研究技能，利用 Google Gemini Deep Research Agent 执行深度调研任务。与标准 LLM 查询的即时回复不同，Deep Research 是一个\"分析师盒子\"，能够自主..."
+      "description": "Deep Research 是一个自主多步骤研究技能，利用 Google Gemini Deep Research Agent 执行深度调研任务。与标准 LLM 查询的即时回复不同，Deep Research 是一个\"分析师盒子\"，能够自主...",
+      "description_en": "Deep Research is an autonomous multi-step research skill that leverages Google Gemini Deep Research Agent for in-depth research tasks. Unlike instant LLM query responses, it acts as an \"analyst box\" capable of autonomous deep investigation."
     },
     "humanizer-zh": {
       "repo": null,
       "subdir": "humanizer-zh",
-      "description": "Humanizer-zh 是一个专门针对中文语境优化的文案编辑技能，旨在识别并消除文本中明显的 AI 生成痕迹。它基于维基百科的“AI 写作迹象”综合指南，并针对中文写作习惯进行了深度适配，让 AI 生成的文字听起来更自然、更具人性的温度。"
+      "description": "Humanizer-zh 是一个专门针对中文语境优化的文案编辑技能，旨在识别并消除文本中明显的 AI 生成痕迹。它基于维基百科的"AI 写作迹象"综合指南，并针对中文写作习惯进行了深度适配，让 AI 生成的文字听起来更自然、更具人性的温度。",
+      "description_en": "Humanizer-zh is a copywriting skill optimized for Chinese context, designed to identify and remove obvious AI-generated traces in text. Based on Wikipedia's comprehensive guide on AI writing signals, it is deeply adapted to Chinese writing habits to make AI-generated text sound more natural and human."
     },
     "reports-summary": {
       "repo": null,
       "subdir": "reports-summary",
-      "description": "Reports Summary 是一个专业的周报汇总助手技能，能够从零散的员工周报中提取关键信息，生成结构清晰的汇总报告，并支持转换为 Word 文档。"
+      "description": "Reports Summary 是一个专业的周报汇总助手技能，能够从零散的员工周报中提取关键信息，生成结构清晰的汇总报告，并支持转换为 Word 文档。",
+      "description_en": "Reports Summary is a professional weekly report aggregation skill that extracts key information from scattered employee reports, generates well-structured summary reports, and supports conversion to Word documents."
     },
     "skill-market": {
       "repo": null,
       "subdir": "skill-market",
-      "description": "Skill Market 是一个自动化的技能发现与安装技能，允许 AI Agent 从 [AgentUse Skill Market](https://www.zerone.market) 查找、浏览并安装全新的技能。"
+      "description": "Skill Market 是一个自动化的技能发现与安装技能，允许 AI Agent 从 [AgentUse Skill Market](https://www.zerone.market) 查找、浏览并安装全新的技能。",
+      "description_en": "Skill Market is an automated skill discovery and installation skill that allows AI Agents to find, browse, and install new skills from the AgentUse Skill Market."
     },
     "video-summarizer": {
       "repo": null,
       "subdir": "video-summarizer",
-      "description": "Video Summarizer 是一个视频内容提取与结构化总结技能，能够下载视频、转录语音、生成结构化摘要，并将结果保存为 Obsidian 笔记。"
+      "description": "Video Summarizer 是一个视频内容提取与结构化总结技能，能够下载视频、转录语音、生成结构化摘要，并将结果保存为 Obsidian 笔记。",
+      "description_en": "Video Summarizer is a video content extraction and structured summarization skill that can download videos, transcribe speech, generate structured summaries, and save results as Obsidian notes."
     },
     "weekly-report": {
       "repo": null,
       "subdir": "weekly-report",
-      "description": "Weekly Report 是一个个人周报生成助手技能，能够将零散的工作记录整理成结构清晰的规范周报，并支持转换为 Word 文档。"
+      "description": "Weekly Report 是一个个人周报生成助手技能，能够将零散的工作记录整理成结构清晰的规范周报，并支持转换为 Word 文档。",
+      "description_en": "Weekly Report is a personal weekly report generation skill that organizes scattered work records into well-structured standard weekly reports, with support for conversion to Word documents."
     },
     "agent-browser": {
       "repo": "https://github.com/vercel-labs/agent-browser.git",
       "subdir": "skills/agent-browser",
-      "description": "Agent Browser 是一个基于 Rust 的高性能无头浏览器自动化 CLI 工具，支持 Node.js 备选方案。它允许 AI Agent 通过结构化的命令行指令进行网页导航、点击、输入及快照获取。"
+      "description": "Agent Browser 是一个基于 Rust 的高性能无头浏览器自动化 CLI 工具，支持 Node.js 备选方案。它允许 AI Agent 通过结构化的命令行指令进行网页导航、点击、输入及快照获取。",
+      "description_en": "Agent Browser is a high-performance headless browser automation CLI built in Rust, with a Node.js alternative. It enables AI Agents to navigate, click, type, and capture snapshots through structured command-line instructions."
     },
     "anti-distill": {
       "repo": "https://github.com/leilei926524-tech/anti-distill.git",
       "subdir": null,
-      "description": "Anti-Distill (反蒸馏 Skill) 是一款专为保护员工核心知识资产设计的工具，能\"清洗\"你被迫写出的工作 Skill，在保证文档形式完整专业的同时，抽走真正核心不可替代的经验内容留给自己。"
+      "description": "Anti-Distill (反蒸馏 Skill) 是一款专为保护员工核心知识资产设计的工具，能\"清洗\"你被迫写出的工作 Skill，在保证文档形式完整专业的同时，抽走真正核心不可替代的经验内容留给自己。",
+      "description_en": "Anti-Distill is a tool designed to protect employees' core knowledge assets. It can \"clean\" work skills you were forced to write, preserving professional document formatting while stripping away the truly irreplaceable core experience for yourself."
     },
     "baoyu-skills": {
       "repo": "https://github.com/JimLiu/baoyu-skills.git",
       "subdir": null,
-      "description": "Baoyu Skills 是宝玉分享的一套为 Claude Code 等 AI 编程助手量身打造的效率提升技能集，涵盖内容创作、图像生成、社交媒体发布、文档处理等多个维度的实用工具。"
+      "description": "Baoyu Skills 是宝玉分享的一套为 Claude Code 等 AI 编程助手量身打造的效率提升技能集，涵盖内容创作、图像生成、社交媒体发布、文档处理等多个维度的实用工具。",
+      "description_en": "Baoyu Skills is a collection of productivity-enhancing skills tailored for AI coding assistants like Claude Code, covering content creation, image generation, social media publishing, document processing, and more."
     },
     "colleague-skill": {
       "repo": "https://github.com/titanwings/colleague-skill.git",
       "subdir": "skills/colleague",
-      "description": "Colleague Skill 是一个将同事\"蒸馏\"为 AI Skill 的工具，通过自动采集飞书/钉钉数据，生成包含工作能力和性格特征的数字化同事。"
+      "description": "Colleague Skill 是一个将同事\"蒸馏\"为 AI Skill 的工具，通过自动采集飞书/钉钉数据，生成包含工作能力和性格特征的数字化同事。",
+      "description_en": "Colleague Skill is a tool that \"distills\" colleagues into AI Skills by automatically collecting Feishu/DingTalk data to generate digital colleague profiles with work capabilities and personality traits."
     },
     "huashu-design": {
       "repo": "https://github.com/alchaincyf/huashu-design.git",
       "subdir": null,
-      "description": "Huashu Design 是一个 HTML 原生的 AI 设计技能，让 AI agent 用一句话产出可交付的高保真设计——交互原型、演讲幻灯片、时间轴动画、信息图，全部基于 HTML 构建，支持导出 MP4/GIF/PPTX/PDF。"
+      "description": "Huashu Design 是一个 HTML 原生的 AI 设计技能，让 AI agent 用一句话产出可交付的高保真设计——交互原型、演讲幻灯片、时间轴动画、信息图，全部基于 HTML 构建，支持导出 MP4/GIF/PPTX/PDF。",
+      "description_en": "Huashu Design is an HTML-native AI design skill that lets AI agents produce deliverable high-fidelity designs from a single sentence — interactive prototypes, presentation slides, timeline animations, infographics — all built with HTML and exportable to MP4/GIF/PPTX/PDF."
     },
     "ljg-skills": {
       "repo": "https://github.com/lijigang/ljg-skills.git",
       "subdir": null,
-      "description": "LJG Skills 是由李继刚打造的个人 AI 技能集，包含 20 个原子技能和 2 个工作流，覆盖内容铸造、概念解剖、论文研读、写作引擎、演讲铸造、伴读引导等领域——把 AI 变成你的认知手术刀。"
+      "description": "LJG Skills 是由李继刚打造的个人 AI 技能集，包含 20 个原子技能和 2 个工作流，覆盖内容铸造、概念解剖、论文研读、写作引擎、演讲铸造、伴读引导等领域——把 AI 变成你的认知手术刀。",
+      "description_en": "LJG Skills is a personal AI skill collection by Li Jigang, featuring 20 atomic skills and 2 workflows covering content crafting, concept dissection, paper study, writing engine, speech crafting, guided reading, and more — turning AI into your cognitive scalpel."
     },
     "minimax-skills": {
       "repo": "https://github.com/MiniMax-AI/skills.git",
       "subdir": null,
-      "description": "MiniMax Skills 是一套面向 AI 编程工具的综合技能库，提供结构化的、生产级质量的前端、全栈、移动端（Android、iOS、Flutter、React Native）、着色器开发以及文档处理（PDF、PPTX、XLSX、DO..."
+      "description": "MiniMax Skills 是一套面向 AI 编程工具的综合技能库，提供结构化的、生产级质量的前端、全栈、移动端（Android、iOS、Flutter、React Native）、着色器开发以及文档处理（PDF、PPTX、XLSX、DO...",
+      "description_en": "MiniMax Skills is a comprehensive skill library for AI coding tools, providing structured, production-quality skills for frontend, full-stack, mobile (Android, iOS, Flutter, React Native), shader development, and document processing (PDF, PPTX, XLSX, DOCX)."
     },
     "obsidian-cli": {
       "repo": null,
       "subdir": "obsidian-cli",
-      "description": "Obsidian Skills 是一套专为 Obsidian 知识管理工具设计的 Agent Skills，遵循 [Agent Skills 规范](https://agentskills.io/specification)，可与 Clau..."
+      "description": "Obsidian Skills 是一套专为 Obsidian 知识管理工具设计的 Agent Skills，遵循 [Agent Skills 规范](https://agentskills.io/specification)，可与 Clau...",
+      "description_en": "Obsidian Skills is a set of Agent Skills designed for the Obsidian knowledge management tool, following the Agent Skills specification and compatible with AI coding assistants."
     },
     "opencli": {
       "repo": "https://github.com/jackwener/OpenCLI.git",
       "subdir": null,
-      "description": "OpenCLI 是一个将网站、浏览器会话、Electron 应用和本地工具转化为确定性接口的 CLI 工具库。它可复用已登录的浏览器状态，自动化实时工作流，并将重复操作固化为可复用的 CLI 命令。"
+      "description": "OpenCLI 是一个将网站、浏览器会话、Electron 应用和本地工具转化为确定性接口的 CLI 工具库。它可复用已登录的浏览器状态，自动化实时工作流，并将重复操作固化为可复用的 CLI 命令。",
+      "description_en": "OpenCLI is a CLI toolkit that transforms websites, browser sessions, Electron apps, and local tools into deterministic interfaces. It reuses logged-in browser states, automates real-time workflows, and solidifies repetitive operations into reusable CLI commands."
     },
     "qiushi-skill": {
       "repo": "https://github.com/HughYau/qiushi-skill.git",
       "subdir": null,
-      "description": "求是 Skill 是一个 AI Agent Skills 合集,从教员思想中提炼出一条总原则和九大方法论工具,系统性地武装 AI 的大脑。不是口号,不是鸡汤,而是可操作的方法论集合。"
+      "description": "求是 Skill 是一个 AI Agent Skills 合集,从教员思想中提炼出一条总原则和九大方法论工具,系统性地武装 AI 的大脑。不是口号,不是鸡汤,而是可操作的方法论集合。",
+      "description_en": "Qiushi Skill is a collection of AI Agent Skills distilled from a guiding principle and nine methodological tools, systematically arming AI's brain. Not slogans, not platitudes, but an actionable methodology toolkit."
     },
     "self-improving-agent": {
       "repo": "https://github.com/peterskoett/self-improving-agent.git",
       "subdir": null,
-      "description": "Self-Improving Agent 是一个用于捕获学习经验、错误和修正建议的技能，旨在实现 AI 智能体的持续改进。"
+      "description": "Self-Improving Agent 是一个用于捕获学习经验、错误和修正建议的技能，旨在实现 AI 智能体的持续改进。",
+      "description_en": "Self-Improving Agent is a skill for capturing learning experiences, errors, and correction suggestions, aimed at enabling continuous improvement of AI agents."
     },
     "skill-creator": {
       "repo": null,
       "subdir": "skill-creator",
-      "description": "Skill Creator 是 Anthropic 官方提供的技能创建与迭代优化工具，帮助用户高效地创建、测试、评估和改进AI编程技能（Skill），实现从构思到部署的完整工作流。"
+      "description": "Skill Creator 是 Anthropic 官方提供的技能创建与迭代优化工具，帮助用户高效地创建、测试、评估和改进AI编程技能（Skill），实现从构思到部署的完整工作流。",
+      "description_en": "Skill Creator is the official skill creation and iterative optimization tool, helping users efficiently create, test, evaluate, and improve AI coding skills through a complete workflow from ideation to deployment."
     },
     "wewrite": {
       "repo": "https://github.com/oaker-io/wewrite.git",
       "subdir": null,
-      "description": "WeWrite 是一款专为微信公众号打造的全流程 AI 写作助手，从热点抓取到草稿箱推送，一句话即可完成。"
+      "description": "WeWrite 是一款专为微信公众号打造的全流程 AI 写作助手，从热点抓取到草稿箱推送，一句话即可完成。",
+      "description_en": "WeWrite is a full-process AI writing assistant designed for WeChat Official Accounts, completing everything from trending topic discovery to draft box publishing with a single sentence."
     }
   }
 }

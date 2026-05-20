@@ -354,6 +354,9 @@ class SkillsUpdater:
             skill_config = repos_config.get("skills", {}).get(skill_name, {})
             skill_description = skill_config.get("description", "")
             desc = skill_description or description or f"Auto-published from skills-daily-update"
+            
+            title_en = skill_name
+            desc_en = skill_config.get("description_en", desc)
 
             # 检查是否存在同名技能，如果存在则删除
             try:
@@ -397,8 +400,10 @@ class SkillsUpdater:
                     cmd = [
                         "opencli", "yioneai", "create", skill_name,
                         "--title", title,
+                        "--title-en", title_en,
                         "--file", zip_path,
                         "--description", desc,
+                        "--description-en", desc_en,
                         "--type", skill_type,
                         "-f", "json",
                         "--trace", "retain-on-failure"
