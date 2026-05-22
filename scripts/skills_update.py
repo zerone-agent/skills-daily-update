@@ -123,6 +123,7 @@ class SkillsUpdater:
         "opencli",
         "qiushi-skill",
         "colleague-skill",
+        "skill-market",
     }
     
     # 网络配置
