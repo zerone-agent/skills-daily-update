@@ -98,6 +98,72 @@
       "description": "OpenCLI 是一个将网站、浏览器会话、Electron 应用和本地工具转化为确定性接口的 CLI 工具库。它可复用已登录的浏览器状态，自动化实时工作流，并将重复操作固化为可复用的 CLI 命令。",
       "description_en": "OpenCLI is a CLI toolkit that transforms websites, browser sessions, Electron apps, and local tools into deterministic interfaces. It reuses logged-in browser states, automates real-time workflows, and solidifies repetitive operations into reusable CLI commands."
     },
+    "officecli": {
+      "repo": "https://github.com/iOfficeAI/OfficeCLI.git",
+      "subdir": "skills/officecli",
+      "description": "OfficeCLI 是一个基于 .NET 的办公自动化技能，支持 Office 文档生成、处理和转换。",
+      "description_en": "OfficeCLI is a .NET-based office automation skill that supports Office document generation, processing, and conversion."
+    },
+    "officecli-docx": {
+      "repo": "https://github.com/iOfficeAI/OfficeCLI.git",
+      "subdir": "skills/officecli-docx",
+      "description": "OfficeCLI DOCX 是一个专注于 Word 文档生成与编辑的技能。",
+      "description_en": "OfficeCLI DOCX is a skill focused on Word document generation and editing."
+    },
+    "officecli-xlsx": {
+      "repo": "https://github.com/iOfficeAI/OfficeCLI.git",
+      "subdir": "skills/officecli-xlsx",
+      "description": "OfficeCLI XLSX 是一个专注于 Excel 表格生成与分析的技能。",
+      "description_en": "OfficeCLI XLSX is a skill focused on Excel spreadsheet generation and analysis."
+    },
+    "officecli-pptx": {
+      "repo": "https://github.com/iOfficeAI/OfficeCLI.git",
+      "subdir": "skills/officecli-pptx",
+      "description": "OfficeCLI PPTX 是一个专注于 PowerPoint 演示文稿处理与生成的技能。",
+      "description_en": "OfficeCLI PPTX is a skill focused on PowerPoint presentation processing and generation."
+    },
+    "officecli-pitch-deck": {
+      "repo": "https://github.com/iOfficeAI/OfficeCLI.git",
+      "subdir": "skills/officecli-pitch-deck",
+      "description": "OfficeCLI Pitch Deck 是一个用于生成投资提案幻灯片的技能。",
+      "description_en": "OfficeCLI Pitch Deck is a skill for generating investor pitch deck slides."
+    },
+    "officecli-financial-model": {
+      "repo": "https://github.com/iOfficeAI/OfficeCLI.git",
+      "subdir": "skills/officecli-financial-model",
+      "description": "OfficeCLI Financial Model 是一个用于构建财务模型与报表的技能。",
+      "description_en": "OfficeCLI Financial Model is a skill for building financial models and reports."
+    },
+    "officecli-data-dashboard": {
+      "repo": "https://github.com/iOfficeAI/OfficeCLI.git",
+      "subdir": "skills/officecli-data-dashboard",
+      "description": "OfficeCLI Data Dashboard 是一个用于创建数据仪表盘与可视化报告的技能。",
+      "description_en": "OfficeCLI Data Dashboard is a skill for creating data dashboards and visual reports."
+    },
+    "officecli-academic-paper": {
+      "repo": "https://github.com/iOfficeAI/OfficeCLI.git",
+      "subdir": "skills/officecli-academic-paper",
+      "description": "OfficeCLI Academic Paper 是一个用于撰写学术论文与研究报告的技能。",
+      "description_en": "OfficeCLI Academic Paper is a skill for writing academic papers and research reports."
+    },
+    "officecli-word-form": {
+      "repo": "https://github.com/iOfficeAI/OfficeCLI.git",
+      "subdir": "skills/officecli-word-form",
+      "description": "OfficeCLI Word Form 是一个用于生成和处理 Word 表单的技能。",
+      "description_en": "OfficeCLI Word Form is a skill for generating and processing Word forms."
+    },
+    "morph-ppt": {
+      "repo": "https://github.com/iOfficeAI/OfficeCLI.git",
+      "subdir": "skills/morph-ppt",
+      "description": "Morph PPT 是一个用于创建与变换 PowerPoint 动画效果的技能。",
+      "description_en": "Morph PPT is a skill for creating and transforming PowerPoint animation effects."
+    },
+    "morph-ppt-3d": {
+      "repo": "https://github.com/iOfficeAI/OfficeCLI.git",
+      "subdir": "skills/morph-ppt-3d",
+      "description": "Morph PPT 3D 是一个用于生成 3D 动画演示效果的 PowerPoint 技能。",
+      "description_en": "Morph PPT 3D is a PowerPoint skill for generating 3D animation presentation effects."
+    },
     "qiushi-skill": {
       "repo": "https://github.com/HughYau/qiushi-skill.git",
       "subdir": null,

@@ -5,6 +5,7 @@ import os
 import tempfile
 import unittest
 import zipfile
+from unittest import mock
 
 import sys
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
@@ -57,6 +58,42 @@ class TestRepoManager(unittest.TestCase):
             commit = self.manager.clone_or_pull("https://github.com/octocat/Hello-World.git", dest)
             self.assertIsNotNone(commit)
             self.assertEqual(len(commit), 40)
+
+    def test_clone_or_pull_cached_repo(self):
+        config = {
+            "_default_repo": "https://github.com/test/repo.git",
+            "_default_path": "skills",
+            "skills": {
+                "officecli-docx": {"repo": "https://github.com/iOfficeAI/OfficeCLI.git", "subdir": "skills/officecli-docx"},
+                "officecli-xlsx": {"repo": "https://github.com/iOfficeAI/OfficeCLI.git", "subdir": "skills/officecli-xlsx"},
+            },
+        }
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            repos_path = os.path.join(tmpdir, "repos.json")
+            with open(repos_path, "w", encoding="utf-8") as f:
+                json.dump(config, f)
+
+            state_path = os.path.join(tmpdir, "state.json")
+            with open(state_path, "w", encoding="utf-8") as f:
+                json.dump({}, f)
+
+            cache_dir = os.path.join(tmpdir, "cache")
+
+            def fake_clone_or_pull(self, repo_url, dest):
+                os.makedirs(os.path.join(dest, "skills/officecli-docx"), exist_ok=True)
+                os.makedirs(os.path.join(dest, "skills/officecli-xlsx"), exist_ok=True)
+                return "dummycommit1234567890abcdef1234567890abcdef1234"
+
+            with mock.patch("scripts.skills_update.RepoManager.clone_or_pull", new=fake_clone_or_pull), \
+                 mock.patch("scripts.skills_update.os.path.expanduser", return_value=cache_dir):
+                updater = SkillsUpdater()
+                plan_path = updater.check(repos_path, state_path, output_path=os.path.join(tmpdir, "plan.json"))
+
+            with open(plan_path, "r", encoding="utf-8") as f:
+                plan = json.load(f)
+
+            self.assertEqual(len(plan["skills"]), 2)
 
 
 class TestStateStore(unittest.TestCase):
@@ -135,7 +172,7 @@ class TestPack(unittest.TestCase):
             zip_path = updated_plan["skills"][0]["zip_path"]
             with zipfile.ZipFile(zip_path, "r") as zf:
                 files = zf.namelist()
-                self.assertIn("SKILL.md", files)
+                self.assertIn("test-skill/SKILL.md", files)
 
 
 class TestDiscover(unittest.TestCase):

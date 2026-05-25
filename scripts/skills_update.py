@@ -201,6 +201,8 @@ class SkillsUpdater:
         cache_dir = os.path.expanduser("~/.cache/skills-daily-update/repos")
         os.makedirs(cache_dir, exist_ok=True)
 
+        repo_cache: Dict[str, tuple[str, str]] = {}
+
         for skill_name in repo_manager.config.get("skills", {}).keys():
             # 检查黑名单，跳过不需要更新的技能
             if skill_name in self.PUBLISH_BLACKLIST:
@@ -212,11 +214,15 @@ class SkillsUpdater:
             repo_dir_name = repo_url.rstrip("/").split("/")[-1].replace(".git", "")
             dest = os.path.join(cache_dir, repo_dir_name)
 
-            try:
-                commit_hash = repo_manager.clone_or_pull(repo_url, dest)
-            except subprocess.CalledProcessError as e:
-                print(f"Warning: Failed to update {skill_name}: {e}")
-                continue
+            if repo_url in repo_cache:
+                commit_hash, dest = repo_cache[repo_url]
+            else:
+                try:
+                    commit_hash = repo_manager.clone_or_pull(repo_url, dest)
+                except subprocess.CalledProcessError as e:
+                    print(f"Warning: Failed to update {skill_name}: {e}")
+                    continue
+                repo_cache[repo_url] = (commit_hash, dest)
 
             source_path = dest
             if subdir:
