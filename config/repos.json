@@ -219,8 +219,8 @@
       "description_en": "OpenCLI is a CLI toolkit that transforms websites, browser sessions, Electron apps, and local tools into deterministic interfaces. It reuses logged-in browser states, automates real-time workflows, and solidifies repetitive operations into reusable CLI commands."
     },
     "officecli": {
-      "repo": "https://github.com/iOfficeAI/OfficeCLI.git",
-      "subdir": "skills/officecli",
+      "repo": null,
+      "subdir": "officecli",
       "description": "OfficeCLI 是一个基于 .NET 的办公自动化技能，支持 Office 文档生成、处理和转换。",
       "description_en": "OfficeCLI is a .NET-based office automation skill that supports Office document generation, processing, and conversion."
     },
