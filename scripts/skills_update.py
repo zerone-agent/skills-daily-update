@@ -127,7 +127,7 @@ class SkillsUpdater:
     }
     
     # 网络配置
-    PUBLISH_TIMEOUT = 10  # 10秒超时
+    PUBLISH_TIMEOUT = 120  # 120秒超时
     PUBLISH_MAX_RETRIES = 3  # 最大重试次数
     PUBLISH_RETRY_DELAY = 1  # 重试间隔（秒）
 
@@ -267,6 +267,8 @@ class SkillsUpdater:
 
             with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
                 for root, dirs, files in os.walk(source_path):
+                    # Skip .git directory to avoid bloated zips
+                    dirs[:] = [d for d in dirs if d != ".git"]
                     for file in files:
                         file_path = os.path.join(root, file)
                         # Add skill name as top-level directory
