@@ -56,11 +56,131 @@
       "description": "Anti-Distill (反蒸馏 Skill) 是一款专为保护员工核心知识资产设计的工具，能\"清洗\"你被迫写出的工作 Skill，在保证文档形式完整专业的同时，抽走真正核心不可替代的经验内容留给自己。",
       "description_en": "Anti-Distill is a tool designed to protect employees' core knowledge assets. It can \"clean\" work skills you were forced to write, preserving professional document formatting while stripping away the truly irreplaceable core experience for yourself."
     },
-    "baoyu-skills": {
+    "baoyu-article-illustrator": {
       "repo": "https://github.com/JimLiu/baoyu-skills.git",
-      "subdir": null,
-      "description": "Baoyu Skills 是宝玉分享的一套为 Claude Code 等 AI 编程助手量身打造的效率提升技能集，涵盖内容创作、图像生成、社交媒体发布、文档处理等多个维度的实用工具。",
-      "description_en": "Baoyu Skills is a collection of productivity-enhancing skills tailored for AI coding assistants like Claude Code, covering content creation, image generation, social media publishing, document processing, and more."
+      "subdir": "skills/baoyu-article-illustrator",
+      "description": "Baoyu Article Illustrator 是一个用于自动生成图文搭配插画的内容创作技能。",
+      "description_en": "Baoyu Article Illustrator is a content creation skill for automatically generating illustrated article visuals."
+    },
+    "baoyu-comic": {
+      "repo": "https://github.com/JimLiu/baoyu-skills.git",
+      "subdir": "skills/baoyu-comic",
+      "description": "Baoyu Comic 是一个用于创建漫画风格图文内容的技能。",
+      "description_en": "Baoyu Comic is a skill for generating comic-style illustrated content."
+    },
+    "baoyu-compress-image": {
+      "repo": "https://github.com/JimLiu/baoyu-skills.git",
+      "subdir": "skills/baoyu-compress-image",
+      "description": "Baoyu Compress Image 是一个用于压缩图像文件、减小体积的技能。",
+      "description_en": "Baoyu Compress Image is a skill for compressing image files and reducing file size."
+    },
+    "baoyu-cover-image": {
+      "repo": "https://github.com/JimLiu/baoyu-skills.git",
+      "subdir": "skills/baoyu-cover-image",
+      "description": "Baoyu Cover Image 是一个用于生成封面图和视觉海报的技能。",
+      "description_en": "Baoyu Cover Image is a skill for generating cover images and visual posters."
+    },
+    "baoyu-danger-gemini-web": {
+      "repo": "https://github.com/JimLiu/baoyu-skills.git",
+      "subdir": "skills/baoyu-danger-gemini-web",
+      "description": "Baoyu Danger Gemini Web 是一个用于检测与处理 Gemini Web 安全风险的技能。",
+      "description_en": "Baoyu Danger Gemini Web is a skill for detecting and handling Gemini Web security risks."
+    },
+    "baoyu-danger-x-to-markdown": {
+      "repo": "https://github.com/JimLiu/baoyu-skills.git",
+      "subdir": "skills/baoyu-danger-x-to-markdown",
+      "description": "Baoyu Danger X to Markdown 是一个用于将危险或不友好内容转化为 Markdown 的技能。",
+      "description_en": "Baoyu Danger X to Markdown is a skill for converting unsafe or unfriendly content into Markdown."
+    },
+    "baoyu-diagram": {
+      "repo": "https://github.com/JimLiu/baoyu-skills.git",
+      "subdir": "skills/baoyu-diagram",
+      "description": "Baoyu Diagram 是一个用于生成流程图与示意图的技能。",
+      "description_en": "Baoyu Diagram is a skill for generating flowcharts and diagrams."
+    },
+    "baoyu-electron-extract": {
+      "repo": "https://github.com/JimLiu/baoyu-skills.git",
+      "subdir": "skills/baoyu-electron-extract",
+      "description": "Baoyu Electron Extract 是一个用于提取 Electron 应用资源与数据的技能。",
+      "description_en": "Baoyu Electron Extract is a skill for extracting resources and data from Electron apps."
+    },
+    "baoyu-format-markdown": {
+      "repo": "https://github.com/JimLiu/baoyu-skills.git",
+      "subdir": "skills/baoyu-format-markdown",
+      "description": "Baoyu Format Markdown 是一个用于格式化和美化 Markdown 文档的技能。",
+      "description_en": "Baoyu Format Markdown is a skill for formatting and beautifying Markdown documents."
+    },
+    "baoyu-image-gen": {
+      "repo": "https://github.com/JimLiu/baoyu-skills.git",
+      "subdir": "skills/baoyu-image-gen",
+      "description": "Baoyu Image Gen 是一个用于自动生成图像素材的技能。",
+      "description_en": "Baoyu Image Gen is a skill for automatically generating image assets."
+    },
+    "baoyu-infographic": {
+      "repo": "https://github.com/JimLiu/baoyu-skills.git",
+      "subdir": "skills/baoyu-infographic",
+      "description": "Baoyu Infographic 是一个用于生成信息图与数据可视化布局的技能。",
+      "description_en": "Baoyu Infographic is a skill for generating infographics and data visualization layouts."
+    },
+    "baoyu-markdown-to-html": {
+      "repo": "https://github.com/JimLiu/baoyu-skills.git",
+      "subdir": "skills/baoyu-markdown-to-html",
+      "description": "Baoyu Markdown to HTML 是一个用于将 Markdown 转换为 HTML 的技能。",
+      "description_en": "Baoyu Markdown to HTML is a skill for converting Markdown into HTML."
+    },
+    "baoyu-post-to-wechat": {
+      "repo": "https://github.com/JimLiu/baoyu-skills.git",
+      "subdir": "skills/baoyu-post-to-wechat",
+      "description": "Baoyu Post to WeChat 是一个用于发布内容到微信公众平台的技能。",
+      "description_en": "Baoyu Post to WeChat is a skill for publishing content to WeChat Official Accounts."
+    },
+    "baoyu-post-to-weibo": {
+      "repo": "https://github.com/JimLiu/baoyu-skills.git",
+      "subdir": "skills/baoyu-post-to-weibo",
+      "description": "Baoyu Post to Weibo 是一个用于发布内容到微博的技能。",
+      "description_en": "Baoyu Post to Weibo is a skill for publishing content to Weibo."
+    },
+    "baoyu-post-to-x": {
+      "repo": "https://github.com/JimLiu/baoyu-skills.git",
+      "subdir": "skills/baoyu-post-to-x",
+      "description": "Baoyu Post to X 是一个用于发布内容到 X/Twitter 的技能。",
+      "description_en": "Baoyu Post to X is a skill for publishing content to X/Twitter."
+    },
+    "baoyu-slide-deck": {
+      "repo": "https://github.com/JimLiu/baoyu-skills.git",
+      "subdir": "skills/baoyu-slide-deck",
+      "description": "Baoyu Slide Deck 是一个用于生成演示幻灯片的技能。",
+      "description_en": "Baoyu Slide Deck is a skill for generating presentation slide decks."
+    },
+    "baoyu-translate": {
+      "repo": "https://github.com/JimLiu/baoyu-skills.git",
+      "subdir": "skills/baoyu-translate",
+      "description": "Baoyu Translate 是一个用于文本翻译与多语言处理的技能。",
+      "description_en": "Baoyu Translate is a skill for text translation and multilingual processing."
+    },
+    "baoyu-url-to-markdown": {
+      "repo": "https://github.com/JimLiu/baoyu-skills.git",
+      "subdir": "skills/baoyu-url-to-markdown",
+      "description": "Baoyu URL to Markdown 是一个用于将网页链接内容转换为 Markdown 的技能。",
+      "description_en": "Baoyu URL to Markdown is a skill for converting web links into Markdown."
+    },
+    "baoyu-wechat-summary": {
+      "repo": "https://github.com/JimLiu/baoyu-skills.git",
+      "subdir": "skills/baoyu-wechat-summary",
+      "description": "Baoyu WeChat Summary 是一个用于总结微信内容与消息的技能。",
+      "description_en": "Baoyu WeChat Summary is a skill for summarizing WeChat content and messages."
+    },
+    "baoyu-xhs-images": {
+      "repo": "https://github.com/JimLiu/baoyu-skills.git",
+      "subdir": "skills/baoyu-xhs-images",
+      "description": "Baoyu XHS Images 是一个用于生成和管理小红书图像内容的技能。",
+      "description_en": "Baoyu XHS Images is a skill for generating and managing Xiaohongshu image content."
+    },
+    "baoyu-youtube-transcript": {
+      "repo": "https://github.com/JimLiu/baoyu-skills.git",
+      "subdir": "skills/baoyu-youtube-transcript",
+      "description": "Baoyu YouTube Transcript 是一个用于下载和转录 YouTube 视频字幕的技能。",
+      "description_en": "Baoyu YouTube Transcript is a skill for downloading and transcribing YouTube video subtitles."
     },
     "colleague-skill": {
       "repo": "https://github.com/titanwings/colleague-skill.git",
