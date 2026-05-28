@@ -122,8 +122,8 @@ class SkillsUpdater:
         "minimax-skills",
         "opencli",
         "qiushi-skill",
+        "obsidian",
         "colleague-skill",
-        "skill-market",
     }
     
     # 网络配置
@@ -368,9 +368,9 @@ class SkillsUpdater:
             title_en = skill_name
             desc_en = skill_config.get("description_en", desc)
 
-            # 检查是否存在同名技能，如果存在则删除
+            # 检查是否存在同名技能
+            skill_exists = False
             try:
-                # 获取所有技能列表
                 list_result = subprocess.run(
                     ["opencli", "yioneai", "list", "-f", "json"],
                     check=True,
@@ -380,35 +380,24 @@ class SkillsUpdater:
                 )
                 existing_skills = json.loads(list_result.stdout)
                 
-                # 查找同名技能
-                existing_skill = None
                 for s in existing_skills:
                     if s.get("name") == skill_name:
-                        existing_skill = s
+                        skill_exists = True
+                        print(f"Found existing skill '{skill_name}' with ID {s.get('id')}, updating...")
                         break
-                
-                if existing_skill:
-                    print(f"Found existing skill '{skill_name}' with ID {existing_skill.get('id')}, deleting...")
-                    delete_result = subprocess.run(
-                        ["opencli", "yioneai", "delete", skill_name],
-                        check=True,
-                        capture_output=True,
-                        text=True,
-                        timeout=30,
-                    )
-                    print(f"Deleted existing skill: {skill_name}")
-                    time.sleep(2)  # 等待删除完成
-                    
+                        
             except (subprocess.CalledProcessError, subprocess.TimeoutExpired, json.JSONDecodeError) as e:
-                print(f"Warning: Failed to check/delete existing skill {skill_name}: {e}")
-                # 继续尝试发布，即使检查失败
+                print(f"Warning: Failed to check existing skill {skill_name}: {e}")
+                # 继续尝试发布
 
             # 重试机制
             for attempt in range(self.PUBLISH_MAX_RETRIES):
                 try:
-                    # Call opencli yioneai create with timeout and trace
+                    # 选择 update 或 create
+                    action = "update" if skill_exists else "create"
+                    
                     cmd = [
-                        "opencli", "yioneai", "create", skill_name,
+                        "opencli", "yioneai", action, skill_name,
                         "--title", title,
                         "--title-en", title_en,
                         "--file", zip_path,
