@@ -56,6 +56,90 @@
       "description": "Anti-Distill (反蒸馏 Skill) 是一款专为保护员工核心知识资产设计的工具，能\"清洗\"你被迫写出的工作 Skill，在保证文档形式完整专业的同时，抽走真正核心不可替代的经验内容留给自己。",
       "description_en": "Anti-Distill is a tool designed to protect employees' core knowledge assets. It can \"clean\" work skills you were forced to write, preserving professional document formatting while stripping away the truly irreplaceable core experience for yourself."
     },
+    "superpowers-brainstorming": {
+      "repo": "https://github.com/obra/superpowers.git",
+      "subdir": "skills/brainstorming",
+      "description": "Superpowers Brainstorming 是一个用于 AI 协助头脑风暴与创意生成的技能。",
+      "description_en": "Superpowers Brainstorming is a skill for AI-assisted brainstorming and idea generation."
+    },
+    "superpowers-dispatching-parallel-agents": {
+      "repo": "https://github.com/obra/superpowers.git",
+      "subdir": "skills/dispatching-parallel-agents",
+      "description": "Superpowers Dispatching Parallel Agents 是一个用于并行调度多个子 agent 执行任务的技能。",
+      "description_en": "Superpowers Dispatching Parallel Agents is a skill for dispatching parallel subagents to execute tasks."
+    },
+    "superpowers-executing-plans": {
+      "repo": "https://github.com/obra/superpowers.git",
+      "subdir": "skills/executing-plans",
+      "description": "Superpowers Executing Plans 是一个用于按计划执行任务与过程的技能。",
+      "description_en": "Superpowers Executing Plans is a skill for executing tasks and workflows according to a plan."
+    },
+    "superpowers-finishing-a-development-branch": {
+      "repo": "https://github.com/obra/superpowers.git",
+      "subdir": "skills/finishing-a-development-branch",
+      "description": "Superpowers Finishing a Development Branch 是一个用于完成开发分支并整合变更的技能。",
+      "description_en": "Superpowers Finishing a Development Branch is a skill for finishing a development branch and integrating changes."
+    },
+    "superpowers-receiving-code-review": {
+      "repo": "https://github.com/obra/superpowers.git",
+      "subdir": "skills/receiving-code-review",
+      "description": "Superpowers Receiving Code Review 是一个用于接收和处理代码评审反馈的技能。",
+      "description_en": "Superpowers Receiving Code Review is a skill for receiving and handling code review feedback."
+    },
+    "superpowers-requesting-code-review": {
+      "repo": "https://github.com/obra/superpowers.git",
+      "subdir": "skills/requesting-code-review",
+      "description": "Superpowers Requesting Code Review 是一个用于请求代码审查并准备提交的技能。",
+      "description_en": "Superpowers Requesting Code Review is a skill for requesting code review and preparing submissions."
+    },
+    "superpowers-subagent-driven-development": {
+      "repo": "https://github.com/obra/superpowers.git",
+      "subdir": "skills/subagent-driven-development",
+      "description": "Superpowers Subagent Driven Development 是一个用于构建由子 agent 驱动的开发流程的技能。",
+      "description_en": "Superpowers Subagent Driven Development is a skill for building subagent-driven development workflows."
+    },
+    "superpowers-systematic-debugging": {
+      "repo": "https://github.com/obra/superpowers.git",
+      "subdir": "skills/systematic-debugging",
+      "description": "Superpowers Systematic Debugging 是一个用于系统性调试与问题定位的技能。",
+      "description_en": "Superpowers Systematic Debugging is a skill for systematic debugging and problem diagnosis."
+    },
+    "superpowers-test-driven-development": {
+      "repo": "https://github.com/obra/superpowers.git",
+      "subdir": "skills/test-driven-development",
+      "description": "Superpowers Test Driven Development 是一个用于测试驱动开发流程的技能。",
+      "description_en": "Superpowers Test Driven Development is a skill for test-driven development workflows."
+    },
+    "superpowers-using-git-worktrees": {
+      "repo": "https://github.com/obra/superpowers.git",
+      "subdir": "skills/using-git-worktrees",
+      "description": "Superpowers Using Git Worktrees 是一个用于使用 Git worktree 管理多分支开发的技能。",
+      "description_en": "Superpowers Using Git Worktrees is a skill for managing multi-branch development with Git worktrees."
+    },
+    "superpowers-using-superpowers": {
+      "repo": "https://github.com/obra/superpowers.git",
+      "subdir": "skills/using-superpowers",
+      "description": "Superpowers Using Superpowers 是一个用于教你如何高效使用 Superpowers 的技能。",
+      "description_en": "Superpowers Using Superpowers is a skill that teaches you how to use Superpowers effectively."
+    },
+    "superpowers-verification-before-completion": {
+      "repo": "https://github.com/obra/superpowers.git",
+      "subdir": "skills/verification-before-completion",
+      "description": "Superpowers Verification Before Completion 是一个用于完成前验证结果与质量的技能。",
+      "description_en": "Superpowers Verification Before Completion is a skill for verifying results and quality before completion."
+    },
+    "superpowers-writing-plans": {
+      "repo": "https://github.com/obra/superpowers.git",
+      "subdir": "skills/writing-plans",
+      "description": "Superpowers Writing Plans 是一个用于构建开发或执行计划的技能。",
+      "description_en": "Superpowers Writing Plans is a skill for building development or execution plans."
+    },
+    "superpowers-writing-skills": {
+      "repo": "https://github.com/obra/superpowers.git",
+      "subdir": "skills/writing-skills",
+      "description": "Superpowers Writing Skills 是一个用于生成技能文档与技能描述的技能。",
+      "description_en": "Superpowers Writing Skills is a skill for generating skill documentation and descriptions."
+    },
     "baoyu-article-illustrator": {
       "repo": "https://github.com/JimLiu/baoyu-skills.git",
       "subdir": "skills/baoyu-article-illustrator",
