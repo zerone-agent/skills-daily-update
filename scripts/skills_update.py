@@ -124,6 +124,7 @@ class SkillsUpdater:
         "qiushi-skill",
         "obsidian",
         "colleague-skill",
+        "skill-market",
     }
     
     # 网络配置
