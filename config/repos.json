@@ -369,8 +369,8 @@
       "description_en": "Guizang PPT Skill is a visual PPT generation assistant that creates high-quality presentations in one click based on the Thousand Images style system."
     },
     "fuck-u-code-analysis": {
-      "repo": null,
-      "subdir": "fuck-u-code-analysis",
+      "repo": "https://github.com/Done-0/fuck-u-code.git",
+      "subdir": null,
       "description": "Fuck U Code Analysis 是一个代码分析技能。",
       "description_en": "Fuck U Code Analysis is a code analysis skill."
     }
