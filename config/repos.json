@@ -152,29 +152,11 @@
       "description": "Baoyu Comic 是一个用于创建漫画风格图文内容的技能。",
       "description_en": "Baoyu Comic is a skill for generating comic-style illustrated content."
     },
-    "baoyu-compress-image": {
-      "repo": "https://github.com/JimLiu/baoyu-skills.git",
-      "subdir": "skills/baoyu-compress-image",
-      "description": "Baoyu Compress Image 是一个用于压缩图像文件、减小体积的技能。",
-      "description_en": "Baoyu Compress Image is a skill for compressing image files and reducing file size."
-    },
     "baoyu-cover-image": {
       "repo": "https://github.com/JimLiu/baoyu-skills.git",
       "subdir": "skills/baoyu-cover-image",
       "description": "Baoyu Cover Image 是一个用于生成封面图和视觉海报的技能。",
       "description_en": "Baoyu Cover Image is a skill for generating cover images and visual posters."
-    },
-    "baoyu-danger-gemini-web": {
-      "repo": "https://github.com/JimLiu/baoyu-skills.git",
-      "subdir": "skills/baoyu-danger-gemini-web",
-      "description": "Baoyu Danger Gemini Web 是一个用于检测与处理 Gemini Web 安全风险的技能。",
-      "description_en": "Baoyu Danger Gemini Web is a skill for detecting and handling Gemini Web security risks."
-    },
-    "baoyu-danger-x-to-markdown": {
-      "repo": "https://github.com/JimLiu/baoyu-skills.git",
-      "subdir": "skills/baoyu-danger-x-to-markdown",
-      "description": "Baoyu Danger X to Markdown 是一个用于将危险或不友好内容转化为 Markdown 的技能。",
-      "description_en": "Baoyu Danger X to Markdown is a skill for converting unsafe or unfriendly content into Markdown."
     },
     "baoyu-diagram": {
       "repo": "https://github.com/JimLiu/baoyu-skills.git",
@@ -182,23 +164,11 @@
       "description": "Baoyu Diagram 是一个用于生成流程图与示意图的技能。",
       "description_en": "Baoyu Diagram is a skill for generating flowcharts and diagrams."
     },
-    "baoyu-electron-extract": {
-      "repo": "https://github.com/JimLiu/baoyu-skills.git",
-      "subdir": "skills/baoyu-electron-extract",
-      "description": "Baoyu Electron Extract 是一个用于提取 Electron 应用资源与数据的技能。",
-      "description_en": "Baoyu Electron Extract is a skill for extracting resources and data from Electron apps."
-    },
     "baoyu-format-markdown": {
       "repo": "https://github.com/JimLiu/baoyu-skills.git",
       "subdir": "skills/baoyu-format-markdown",
       "description": "Baoyu Format Markdown 是一个用于格式化和美化 Markdown 文档的技能。",
       "description_en": "Baoyu Format Markdown is a skill for formatting and beautifying Markdown documents."
-    },
-    "baoyu-image-gen": {
-      "repo": "https://github.com/JimLiu/baoyu-skills.git",
-      "subdir": "skills/baoyu-image-gen",
-      "description": "Baoyu Image Gen 是一个用于自动生成图像素材的技能。",
-      "description_en": "Baoyu Image Gen is a skill for automatically generating image assets."
     },
     "baoyu-infographic": {
       "repo": "https://github.com/JimLiu/baoyu-skills.git",
@@ -211,24 +181,6 @@
       "subdir": "skills/baoyu-markdown-to-html",
       "description": "Baoyu Markdown to HTML 是一个用于将 Markdown 转换为 HTML 的技能。",
       "description_en": "Baoyu Markdown to HTML is a skill for converting Markdown into HTML."
-    },
-    "baoyu-post-to-wechat": {
-      "repo": "https://github.com/JimLiu/baoyu-skills.git",
-      "subdir": "skills/baoyu-post-to-wechat",
-      "description": "Baoyu Post to WeChat 是一个用于发布内容到微信公众平台的技能。",
-      "description_en": "Baoyu Post to WeChat is a skill for publishing content to WeChat Official Accounts."
-    },
-    "baoyu-post-to-weibo": {
-      "repo": "https://github.com/JimLiu/baoyu-skills.git",
-      "subdir": "skills/baoyu-post-to-weibo",
-      "description": "Baoyu Post to Weibo 是一个用于发布内容到微博的技能。",
-      "description_en": "Baoyu Post to Weibo is a skill for publishing content to Weibo."
-    },
-    "baoyu-post-to-x": {
-      "repo": "https://github.com/JimLiu/baoyu-skills.git",
-      "subdir": "skills/baoyu-post-to-x",
-      "description": "Baoyu Post to X 是一个用于发布内容到 X/Twitter 的技能。",
-      "description_en": "Baoyu Post to X is a skill for publishing content to X/Twitter."
     },
     "baoyu-slide-deck": {
       "repo": "https://github.com/JimLiu/baoyu-skills.git",
@@ -247,12 +199,6 @@
       "subdir": "skills/baoyu-url-to-markdown",
       "description": "Baoyu URL to Markdown 是一个用于将网页链接内容转换为 Markdown 的技能。",
       "description_en": "Baoyu URL to Markdown is a skill for converting web links into Markdown."
-    },
-    "baoyu-wechat-summary": {
-      "repo": "https://github.com/JimLiu/baoyu-skills.git",
-      "subdir": "skills/baoyu-wechat-summary",
-      "description": "Baoyu WeChat Summary 是一个用于总结微信内容与消息的技能。",
-      "description_en": "Baoyu WeChat Summary is a skill for summarizing WeChat content and messages."
     },
     "baoyu-xhs-images": {
       "repo": "https://github.com/JimLiu/baoyu-skills.git",
@@ -278,11 +224,35 @@
       "description": "Huashu Design 是一个 HTML 原生的 AI 设计技能，让 AI agent 用一句话产出可交付的高保真设计——交互原型、演讲幻灯片、时间轴动画、信息图，全部基于 HTML 构建，支持导出 MP4/GIF/PPTX/PDF。",
       "description_en": "Huashu Design is an HTML-native AI design skill that lets AI agents produce deliverable high-fidelity designs from a single sentence — interactive prototypes, presentation slides, timeline animations, infographics — all built with HTML and exportable to MP4/GIF/PPTX/PDF."
     },
-    "ljg-skills": {
+    "ljg-learn": {
       "repo": "https://github.com/lijigang/ljg-skills.git",
-      "subdir": null,
-      "description": "LJG Skills 是由李继刚打造的个人 AI 技能集，包含 20 个原子技能和 2 个工作流，覆盖内容铸造、概念解剖、论文研读、写作引擎、演讲铸造、伴读引导等领域——把 AI 变成你的认知手术刀。",
-      "description_en": "LJG Skills is a personal AI skill collection by Li Jigang, featuring 20 atomic skills and 2 workflows covering content crafting, concept dissection, paper study, writing engine, speech crafting, guided reading, and more — turning AI into your cognitive scalpel."
+      "subdir": "skills/ljg-learn",
+      "description": "LJG Learn 是一个深度概念解剖技能，通过 8 个探索维度拆解任意概念，把复杂思想压缩成可执行的洞察。",
+      "description_en": "LJG Learn is a deep concept dissection skill that deconstructs any concept through eight exploration dimensions and compresses insights into actionable epiphanies."
+    },
+    "ljg-rank": {
+      "repo": "https://github.com/lijigang/ljg-skills.git",
+      "subdir": "skills/ljg-rank",
+      "description": "LJG Rank 是一个领域降秩技能，将纷繁现象砍到不可再少的独立生成力，再用它们把现象一个个生回来。",
+      "description_en": "LJG Rank is a domain rank-reduction skill that trims noisy phenomena down to irreducible generators and uses them to reconstruct each phenomenon."
+    },
+    "ljg-roundtable": {
+      "repo": "https://github.com/lijigang/ljg-skills.git",
+      "subdir": "skills/ljg-roundtable",
+      "description": "LJG Roundtable 是一个圆桌对谈技能，让多个思想角色围绕一个问题交锋，把复杂议题摊成多面镜子。",
+      "description_en": "LJG Roundtable is a roundtable conversation skill that lets multiple intellectual personas clash around a question, unfolding complex issues through many mirrors."
+    },
+    "ljg-think": {
+      "repo": "https://github.com/lijigang/ljg-skills.git",
+      "subdir": "skills/ljg-think",
+      "description": "LJG Think 是一个追本之箭式的纵向深钻思维技能，像箭一样把观点、现象或问题一路钻到不可再分的本质。",
+      "description_en": "LJG Think is a root-seeking arrow of vertical deep thinking, drilling any idea, phenomenon, or question down to its irreducible root."
+    },
+    "ljg-writes": {
+      "repo": "https://github.com/lijigang/ljg-skills.git",
+      "subdir": "skills/ljg-writes",
+      "description": "LJG Writes 是一个写作引擎技能，像手术刀一样剖开观点，层层剥到底，输出 1000-1500 字的精炼文章。",
+      "description_en": "LJG Writes is a writing-engine skill that dissects an idea like a scalpel, peeling it layer by layer into a 1000-1500 word refined essay."
     },
     "minimax-skills": {
       "repo": "https://github.com/MiniMax-AI/skills.git",
