@@ -373,6 +373,12 @@
       "subdir": "skills/fuck-u-code-analysis",
       "description": "Fuck U Code Analysis 是一个代码分析技能。",
       "description_en": "Fuck U Code Analysis is a code analysis skill."
+    },
+    "renwei-writing": {
+      "repo": "https://github.com/orange2ai/renwei-writing.git",
+      "subdir": null,
+      "description": "Renwei Writing 是一个写作辅助技能。",
+      "description_en": "Renwei Writing is a writing assistance skill."
     }
   }
 }
