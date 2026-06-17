@@ -370,7 +370,7 @@
     },
     "fuck-u-code-analysis": {
       "repo": "https://github.com/Done-0/fuck-u-code.git",
-      "subdir": null,
+      "subdir": "skills/fuck-u-code-analysis",
       "description": "Fuck U Code Analysis 是一个代码分析技能。",
       "description_en": "Fuck U Code Analysis is a code analysis skill."
     }
